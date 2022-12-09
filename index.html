@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>FIKSNI TEČAJ KONVERZIJE</title>
+    <style>
+      /* Add styles here to give the header a red background and white text */
+      h1 {
+        background-color: red;
+        color: white;
+      }
+
+      /* Style the subtitle to have a red background and white text */
+      h2 {
+        background-color: red;
+        color: white;
+      }
+
+      /* Style the keypad */
+      .keypad {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .keypad button {
+        width: 33%;
+        height: 50px;
+        font-size: 18px;
+      }
+
+      /* Style the converted value to be centered on the page and have a large font */
+      .converted-values {
+        text-align: center;
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FIKSNI TEČAJ KONVERZIJE</h1>
+    <h2>1 EUR = 7.53433 HRK</h2>
+    <div>
+      <p>Enter a number:</p>
+      <!-- Add an input field where users can enter numbers -->
+      <input type="text" id="input-field" />
+      <br />
+      <!-- Add a keypad with numbers 0 to 9 as buttons -->
+      <div class="keypad">
+        <button onclick="enterNumber(0)">0</button>
+        <button onclick="enterNumber(1)">1</button>
+        <button onclick="enterNumber(2)">2</button>
+        <button onclick="enterNumber(3)">3</button>
+        <button onclick="enterNumber(4)">4</button>
+        <button onclick="enterNumber(5)">5</button>
+        <button onclick="enterNumber(6)">6</button>
+        <button onclick="enterNumber(7)">7</button>
+        <button onclick="enterNumber(8)">8</button>
+        <button onclick="enterNumber(9)">9</button>
+      </div>
+      <br />
+      <!-- Add a button that users can click to convert the entered value to HRK -->
+      <button onclick="convert('HRK')">Convert to HRK</button>
+      <button onclick="convert('EUR')">Convert to EUR</button>
+      <br />
+      <!-- Add an element that will display the converted value -->
+      <p class="converted-values">Converted value:</p>
+      <p class="converted-values" id="converted-value"></p>
+    </div>
+
+    <script>
+      function enterNumber(number) {
+        // Get the current value in the input field
+        const inputField = document.getElementById("input-field");
+        const currentValue = inputField.value;
+
+        // Append the entered number to the current value
+        const newValue = currentValue + number;
+
+        // Update the value in the input field
+        inputField.value = newValue;
+      }
+
+      function convert(targetCurrency) {
+        // Get the value from the input field
+        const inputValue = document.getElementById("input-field").value;
+
+        let convertedValue;
+        if (targetCurrency === "HRK") {
+          // Convert the value to HRK using the exchange rate of 7.54433
+          convertedValue = inputValue * 7.54433;
+        } else if (targetCurrency === "EUR") {
+          // Convert the value to EUR using the exchange rate of 7.54433
+          convertedValue = inputValue / 7.54433;
+        }
+
+        // Round the converted value to two decimal places
+        convertedValue = convertedValue.toFixed(2);
+
+        // Display the converted value
+        document.getElementById("converted-value").innerHTML = convertedValue;
+      }
+    </script>
+  </body>
+</html>
